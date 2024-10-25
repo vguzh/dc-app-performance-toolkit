@@ -102,6 +102,8 @@ JIRA_DATASET_USERS = __get_jira_dataset('users.csv')
 JIRA_DATASET_ISSUES = __get_jira_dataset('issues.csv')
 JIRA_DATASET_PROJECTS = __get_jira_dataset('projects.csv')
 JIRA_DATASET_CUSTOM_ISSUES = __get_jira_dataset('custom-issues.csv')
+JIRA_DATASET_NOTIFICATION_TYPES = __get_jira_dataset("notification-types.csv")
+JIRA_DATASET_AUTHORIZED_TELEGRAM_USERS = __get_jira_dataset("authorized-telegram-users.csv")
 
 JSM_YML = __get_jsm_yml()
 JSM_DATASETS = __get_jsm_datasets()

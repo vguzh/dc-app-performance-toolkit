@@ -16,6 +16,7 @@ from selenium.common.exceptions import WebDriverException
 from selenium.webdriver import Chrome
 from selenium.webdriver.chrome.options import Options
 
+from selenium_ui.constants.jira_data_key import NOTIFICATION_TYPES, AUTHORIZED_TELEGRAM_USERS
 from util.common_util import webdriver_pretty_debug
 from util.conf import CONFLUENCE_SETTINGS, JIRA_SETTINGS, BITBUCKET_SETTINGS, JSM_SETTINGS, BAMBOO_SETTINGS
 from util.exceptions import WebDriverExceptionPostpone
@@ -24,7 +25,8 @@ from util.project_paths import JIRA_DATASET_ISSUES, JIRA_DATASET_JQLS, JIRA_DATA
     BITBUCKET_PROJECTS, BITBUCKET_REPOS, BITBUCKET_PRS, CONFLUENCE_BLOGS, CONFLUENCE_PAGES, CONFLUENCE_CUSTOM_PAGES, \
     CONFLUENCE_USERS, ENV_TAURUS_ARTIFACT_DIR, JSM_DATASET_REQUESTS, JSM_DATASET_CUSTOMERS, JSM_DATASET_AGENTS, \
     JSM_DATASET_SERVICE_DESKS_L, JSM_DATASET_SERVICE_DESKS_M, JSM_DATASET_SERVICE_DESKS_S, JSM_DATASET_CUSTOM_ISSUES, \
-    JSM_DATASET_INSIGHT_SCHEMAS, JSM_DATASET_INSIGHT_ISSUES, BAMBOO_USERS, BAMBOO_BUILD_PLANS, CONFLUENCE_CQLS
+    JSM_DATASET_INSIGHT_SCHEMAS, JSM_DATASET_INSIGHT_ISSUES, BAMBOO_USERS, BAMBOO_BUILD_PLANS, CONFLUENCE_CQLS, \
+    JIRA_DATASET_NOTIFICATION_TYPES, JIRA_DATASET_AUTHORIZED_TELEGRAM_USERS
 
 SCREEN_WIDTH = 1920
 SCREEN_HEIGHT = 1080
@@ -59,6 +61,8 @@ class Dataset:
                 JIRA_DATASET_PROJECTS)
             self.dataset["custom_issues"] = self.__read_input_file(
                 JIRA_DATASET_CUSTOM_ISSUES)
+            self.dataset[NOTIFICATION_TYPES] = self.__read_input_file(JIRA_DATASET_NOTIFICATION_TYPES)
+            self.dataset[AUTHORIZED_TELEGRAM_USERS] = self.__read_input_file(JIRA_DATASET_AUTHORIZED_TELEGRAM_USERS)
         return self.dataset
 
     def jsm_dataset(self):
