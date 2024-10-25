@@ -1,5 +1,5 @@
-from selenium_ui.jira import modules
 from extension.jira import extension_ui  # noqa F401
+from selenium_ui.jira import modules
 
 
 # this action should be the first one
@@ -55,15 +55,25 @@ def test_1_selenium_view_issue(jira_webdriver, jira_datasets, jira_screen_shots)
     modules.view_issue(jira_webdriver, jira_datasets)
 
 
-"""
-Add custom actions anywhere between login and log out action. Move this to a different line as needed.
-Write your custom selenium scripts in `app/extension/jira/extension_ui.py`.
-Refer to `app/selenium_ui/jira/modules.py` for examples.
-"""
+def test_1_selenium_view_chats_page(jira_webdriver, jira_datasets, jira_screen_shots):
+    extension_ui.jira_admin_login(jira_webdriver)
+    extension_ui.view_chats(jira_webdriver, jira_datasets)
 
 
-# def test_1_selenium_custom_action(jira_webdriver, jira_datasets, jira_screen_shots):
-#     extension_ui.app_specific_action(jira_webdriver, jira_datasets)
+def test_1_selenium_create_chat(jira_webdriver, jira_datasets, jira_screen_shots):
+    extension_ui.create_chat(jira_webdriver, jira_datasets)
+
+
+def test_1_selenium_add_user(jira_webdriver, jira_datasets, jira_screen_shots):
+    extension_ui.add_user_to_chat(jira_webdriver, jira_datasets)
+
+
+def test_1_selenium_remove_user_from_chat(jira_webdriver, jira_datasets, jira_screen_shots):
+    extension_ui.delete_users_from_chat(jira_webdriver, jira_datasets)
+
+
+def test_1_selenium_delete_chat(jira_webdriver, jira_datasets, jira_screen_shots):
+    extension_ui.delete_chat(jira_webdriver, jira_datasets)
 
 
 # this action should be the last one

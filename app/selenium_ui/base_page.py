@@ -1,7 +1,7 @@
 import random
 import string
-from collections import OrderedDict
 import time
+from collections import OrderedDict
 
 from packaging import version
 from selenium.common.exceptions import WebDriverException
@@ -30,6 +30,9 @@ class BasePage:
                 self.wait_until_visible(selector, timeout=self.timeout)
         else:
             self.wait_until_visible(self.page_loaded_selector, timeout=self.timeout)
+
+    def wait_until_page_invisible(self):
+        self.wait_until_invisible(self.page_loaded_selector)
 
     def go_to_url(self, url):
         self.driver.get(url)
