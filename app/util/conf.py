@@ -50,6 +50,7 @@ class JiraSettings(BaseAppSettings):
         self.custom_dataset_query = self.get_property('custom_dataset_query') or ""
         self.verbose = self.settings['verbose']
         self.total_actions_per_hour = self.get_property('total_actions_per_hour')
+        self.plugin_key = self.get_property('plugin_key')
 
 
 class ConfluenceSettings(BaseAppSettings):
