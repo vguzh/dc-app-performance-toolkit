@@ -1,4 +1,5 @@
 from selenium.webdriver.common.by import By
+
 from util.conf import JIRA_SETTINGS
 
 
@@ -17,7 +18,9 @@ class UrlManager:
         self.logout_params = '/logoutconfirm.jsp'
         self.dashboard_params = '/secure/Dashboard.jspa'
         self.issue_params = f"/browse/{issue_key}"
-        self.project_summary_params = f"/projects/{project_key}/summary"
+        project_params = f"/projects/{project_key}"
+        self.project_summary_params = f"{project_params}/summary"
+        self.project_chats_params = f"{project_params}?selectedItem={JIRA_SETTINGS.plugin_key}:view-project-chats"
         self.jql_params = f"/issues/?jql={jql}"
         self.edit_issue_params = f"/secure/EditIssue!default.jspa?id={issue_id}"
         self.edit_comments_params = f"/secure/AddComment!default.jspa?id={issue_id}"
@@ -50,6 +53,9 @@ class UrlManager:
 
     def projects_list_page_url(self):
         return f"{self.host}{self.projects_list_params}"
+
+    def chats_page_url(self):
+        return f"{self.host}{self.project_chats_params}"
 
     def boards_list_page_url(self):
         return f"{self.host}{self.boards_list_params}"
@@ -147,3 +153,21 @@ class BoardLocators:
     # Scrum boards
     scrum_board_backlog_content = (By.CSS_SELECTOR, "#ghx-backlog[data-rendered]:not(.browser-metrics-stale)")
     board_columns = (By.CSS_SELECTOR, ".ghx-column")
+
+
+class ChatsSelectors:
+    project_chats_table = (By.ID, "chats-table")
+    crete_chat_button = (By.ID, "create-chat-button")
+    title_chat_link = (By.XPATH, "//div[contains(@class, 'project-title')]/a")
+
+
+class ChatsPopupSelectors:
+    crete_chats_popup = (By.ID, "create-chat-dialog")
+    project_type_label = (By.XPATH, "//label[@for='project-option']")
+    notification_types_select = (By.XPATH, "//div[@id='notification-types-container']//select")
+    submit_button = (By.ID, "dialog-submit-button")
+    view_admins_label = (By.XPATH, "//label[@for='manage-admins']")
+    users_field = (By.XPATH, "//div[@id='participants-container']//input")
+    users_autocompile_result = (By.XPATH, "//div[@id='select2-drop']//li[contains(@class, 'select2-result')]")
+    participant_users = (By.XPATH, "//div[@id='participants-container']//li[contains(@class, 'select2-search-choice')"
+                                   " and not(contains(@class, 'disabled'))]")
